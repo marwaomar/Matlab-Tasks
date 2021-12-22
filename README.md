@@ -2,4 +2,5 @@
 ## Topic 1:
 ### Traffic Lights:
 
-![Alt Text](TrafficLightRed.png )
+![Alt Text](Topic%201/Traffic%20Light/TF.gif )
+
