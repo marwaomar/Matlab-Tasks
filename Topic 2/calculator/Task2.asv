@@ -22,7 +22,7 @@ function varargout = Task2(varargin)
 
 % Edit the above text to modify the response to help Task2
 
-% Last Modified by GUIDE v2.5 02-Jan-2022 13:08:58
+% Last Modified by GUIDE v2.5 02-Jan-2022 13:16:58
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -75,6 +75,11 @@ y_axis_data = 0;
 % UIWAIT makes Task2 wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 set(handles.eqnText,'String',"");
+contents = cellstr(get(handles.listbox1,'String'));
+set(handles.op1,'String', contents{get(handles.listbox1,'Value')});
+
+contents2 = cellstr(get(handles.listbox2,'String'));
+set(handles.op2,'String', contents2{get(handles.listbox2,'Value')});
 
 % --- Outputs from this function are returned to the command line.
 function varargout = Task2_OutputFcn(hObject, eventdata, handles) 
@@ -98,22 +103,30 @@ global op1;
 global result;
 num1 = str2double(get(handles.num1,'String')) ;
 num2 = str2double(get(handles.num2,'String'));
-switch op1
-   case '-'
-      result = num1 - num2;
-   case '+'
-      result = num1 + num2;
-   case '*'
-      result = num1 * num2;
-   case '/'
-       if(num2 ~= 0)
-           result = num1 / num2;
-       else
-           set(handles.err1,'String',"Can not divide by zero");
-       end
+if(isnan(num1) || isnan(num2))
+    set(handles.err1,'String',"ERROR NON Numeric Value");
+    set(handles.equals,'String',"$$")
+    
+else
+    set(handles.err1,'String'," ");
+
+    switch op1
+       case '-'
+          result = num1 - num2;
+       case '+'
+          result = num1 + num2;
+       case '*'
+          result = num1 * num2;
+       case '/'
+           if(num2 ~= 0)
+               result = num1 / num2;
+           else
+               set(handles.err1,'String',"Can not divide by zero");
+           end
+    end
+    set(handles.equals,'String',result);
+    result =0;
 end
-set(handles.equals,'String',result);
-result =0;
 
 % --- Executes on button press in pushbutton2.
 function pushbutton2_Callback(hObject, eventdata, handles)
@@ -135,27 +148,34 @@ op2 = get(handles.listbox2,'Value');
 %disp(x_axis_data);
 x_axis_data = get(handles.xData,'String');
 y_axis_data = get(handles.yData,'String');
-x_axis_data = str2double(strsplit(x_axis_data,' '));
-y_axis_data = str2double(strsplit(y_axis_data,' '));
-switch op2
-   case 1
-      result = x_axis_data - y_axis_data;
-   case 2
-      result = x_axis_data + y_axis_data;
-   case 4
-      result = x_axis_data .* y_axis_data;
-   case 3
- 
-       if(y_axis_data ~= zeros(size(y_axis_data )))
-           result = x_axis_data ./ y_axis_data;
-       else
-           set(handles.errConsole,'String',"Can not divide by zero");
-           result ='';
-       end
-end
-result = num2str(result);
-set(handles.resultData,'String',result);
+str2double(strsplit(x_axis_data,' '))
+if(isnan(str2double(strsplit(x_axis_data,' '))) || isnan(str2double(strsplit(y_axis_data,' '))))
+    set(handles.errConsole,'String',"ERROR NON Numeric Value");
+    
+else
+    set(handles.errConsole,'String'," ");
 
+    x_axis_data = str2double(strsplit(x_axis_data,' '));
+    y_axis_data = str2double(strsplit(y_axis_data,' '));
+
+    switch op2
+       case 1
+          result = x_axis_data - y_axis_data;
+       case 2
+          result = x_axis_data + y_axis_data;
+       case 4
+          result = x_axis_data .* y_axis_data;
+       case 3
+           if(y_axis_data ~= zeros(size(y_axis_data )))
+               result = x_axis_data ./ y_axis_data;
+           else
+               set(handles.errConsole,'String',"Can not divide by zero");
+               result ='';
+           end
+    end
+    result = num2str(result);
+    set(handles.resultData,'String',result);
+    end
 
 
 
@@ -288,6 +308,13 @@ function op2_Callback(hObject, eventdata, handles)
 % hObject    handle to op2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global op2;
+contents = cellstr(get(handles.listbox2,'String'));
+% 
+% disp(contents{get(hObject,'Value')});
+
+op2 = contents{get(handles.listbox2,'Value')};
+set(handles.op1,'String',op2);
 
 % Hints: get(hObject,'String') returns contents of op2 as text
 %        str2double(get(hObject,'String')) returns contents of op2 as a double
@@ -452,7 +479,8 @@ function Delete_Callback(hObject, eventdata, handles)
 % hObject    handle to Delete (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+axes(handles.axes1);
+plot(0,0);
 
 % --- Executes on button press in Enter.
 function Enter_Callback(hObject, eventdata, handles)
@@ -496,7 +524,7 @@ function listbox2_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global op2;
-contents = cellstr(get(hObject,'String'));
+contents =  cellstr(get(hObject,'String'));
 % 
 % disp(contents{get(hObject,'Value')});
 
@@ -588,4 +616,5 @@ function num2_CreateFcn(varargin)
 function equals_CreateFcn(varargin)
 function edit6_CreateFcn(varargin)
 function listbox2_CreateFcn(varargin)
-
+function num1_Callback(hObject, eventdata, handles)
+function num2_Callback(hObject, eventdata, handles)
