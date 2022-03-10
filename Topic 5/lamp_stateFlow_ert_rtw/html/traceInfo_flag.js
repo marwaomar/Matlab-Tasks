@@ -1,0 +1,49 @@
+function TraceInfoFlag() {
+    this.traceFlag = new Array();
+    this.traceFlag["lamp_stateFlow.c:39c44"]=1;
+    this.traceFlag["lamp_stateFlow.c:40c41"]=1;
+    this.traceFlag["lamp_stateFlow.c:43c53"]=1;
+    this.traceFlag["lamp_stateFlow.c:59c48"]=1;
+    this.traceFlag["lamp_stateFlow.c:87c48"]=1;
+}
+top.TraceInfoFlag.instance = new TraceInfoFlag();
+function TraceInfoLineFlag() {
+    this.lineTraceFlag = new Array();
+    this.lineTraceFlag["lamp_stateFlow.c:39"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:40"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:43"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:44"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:47"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:50"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:51"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:52"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:55"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:57"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:58"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:59"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:61"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:62"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:63"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:66"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:69"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:72"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:75"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:79"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:81"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:82"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:83"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:87"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:89"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:90"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:91"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:94"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:97"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:100"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:126"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:127"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:128"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:133"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:138"]=1;
+    this.lineTraceFlag["lamp_stateFlow.c:143"]=1;
+}
+top.TraceInfoLineFlag.instance = new TraceInfoLineFlag();
